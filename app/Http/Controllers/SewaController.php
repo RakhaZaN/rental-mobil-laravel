@@ -15,10 +15,10 @@ class SewaController extends Controller
      */
     public function index()
     {
-        $daftar = DaftarSewa::all();
-        return $daftar;
+        $daftar_sewa = DaftarSewa::all();
+        // return $daftar;
 
-        // return view('welcome', compact('daftar'));
+        return view('sewa.index', compact('daftar_sewa'));
     }
 
     /**
