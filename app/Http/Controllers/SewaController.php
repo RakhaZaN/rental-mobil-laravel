@@ -28,7 +28,8 @@ class SewaController extends Controller
      */
     public function create()
     {
-        //
+        $mobil = [];
+        return view('sewa.book', compact('mobil'));
     }
 
     /**

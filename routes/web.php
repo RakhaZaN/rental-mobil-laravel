@@ -18,4 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/sewa', SewaController::class);
+Route::group([
+    "as" => "sewa.",
+    "prefix" => "sewa"
+], function () {
+    Route::get('/', [SewaController::class, 'index'])->name('index');
+    Route::get('/form', [SewaController::class, 'create'])->name('form');
+    Route::post('/book', [SewaController::class, 'store'])->name('book');
+});

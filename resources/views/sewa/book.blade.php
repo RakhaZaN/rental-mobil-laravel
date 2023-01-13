@@ -24,7 +24,7 @@
 
             <!-- Default box -->
             <div class="card">
-                <div class="card-header">
+                {{-- <div class="card-header">
                     <h3 class="card-title">FORM SEWA MOBIL</h3>
 
                     <div class="card-tools">
@@ -35,7 +35,7 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card-body">
                     <div id="booking" class="section">
                         <div class="section-center">
@@ -43,9 +43,10 @@
                                 <div class="row">
                                     <div class=" col-sm-8">
                                         <div class="booking-form">
-                                            {{ $hidden = ['edit' => $mbledit->nopol] }}
-                                            <form action="/mobil/save" method="POST">
+                                            {{-- {{ $hidden = ['edit' => $mbledit->nopol] }} --}}
+                                            <form action="{{ route('sewa.book') }}" method="POST">
                                                 @method('POST')
+                                                @csrf
                                                 <div class="form-group row">
                                                     <label for="nik" class="col-4 col-form-label">NIK</label>
                                                     <div class="col-8">
@@ -76,7 +77,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label for="nama" class="col-4 col-form-label">Users ID</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
@@ -92,7 +93,7 @@
                                                                 data-ms-editor="true">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
                                                     <label for="nopol" class="col-4 col-form-label">Nopol</label>
                                                     <div class="col-8">
@@ -103,9 +104,8 @@
                                                                 </div>
                                                             </div>
                                                             <input id="nopol" name="nopol" placeholder="BXXXXABC"
-                                                                type="text" class="form-control"
-                                                                value="<?= $mbledit->nopol ?>" spellcheck="false"
-                                                                data-ms-editor="true">
+                                                                type="text" class="form-control" value=""
+                                                                spellcheck="false" data-ms-editor="true">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -113,9 +113,8 @@
                                                     <label for="merkid" class="col-4 col-form-label">Merk ID</label>
                                                     <div class="col-8">
                                                         <input id="merkid" name="merkid" placeholder="merk id"
-                                                            type="text" class="form-control"
-                                                            value="<?= $mbledit->merk_id ?>" spellcheck="false"
-                                                            data-ms-editor="true">
+                                                            type="text" class="form-control" value=""
+                                                            spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -128,8 +127,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="merkmobil" name="mobil" type="text"
-                                                                class="form-control"
-                                                                value="<?= $mbledit->merk ?> <?= $mbledit->produk ?>">
+                                                                class="form-control" value="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,7 +141,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="mobil_id" name="mobil_id" type="text"
-                                                                value="<?= $mbledit->mobil_id ?>" class="form-control">
+                                                                value="" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -151,8 +149,8 @@
                                                     <label for="warna" class="col-4 col-form-label">Warna</label>
                                                     <div class="col-8">
                                                         <input id="warna" name="warna" type="text"
-                                                            class="form-control" value="<?= $mbledit->warna ?>"
-                                                            spellcheck="false" data-ms-editor="true">
+                                                            class="form-control" value="" spellcheck="false"
+                                                            data-ms-editor="true">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -161,12 +159,12 @@
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
-                                                                    <i class="fa "></i>
+                                                                    <i class="fas fa-money-bill"></i>
                                                                 </div>
                                                             </div>
                                                             <input id="biaya" name="biaya" type="text"
-                                                                class="form-control" value="<?= $mbledit->biaya_sewa ?>"
-                                                                spellcheck="false" data-ms-editor="true">
+                                                                class="form-control" value="" spellcheck="false"
+                                                                data-ms-editor="true">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -175,16 +173,16 @@
                                                         Mulai</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </div>
+                                                            </div>
                                                             <input id="tglmulai" name="tglmulai" type="text"
                                                                 class="form-control datepicker-here" data-language='en'
                                                                 data-date-format="yyyy-mm-dd" spellcheck="false"
                                                                 data-ms-editor="true" spellcheck="false"
                                                                 data-ms-editor="true">
-                                                            <div class="input-group-append">
-                                                                <div class="input-group-text">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,7 +230,7 @@
                                     <div class="col-sm-4">
                                         <b>Foto</b>
                                         <br>
-                                        <?php
+                                        {{-- <?php
                                         $filefoto = base_url('uploads/foto/' . $mbledit->foto);
 
                                         // echo $filefoto;
@@ -248,7 +246,7 @@
                                         // } else {
                                         //     echo '<img src="' . base_url('uploads/foto/default.png') . '" class="img-thumbnail" width="250" alt="Foto">';
                                         // }
-                                        ?>
+                                        ?> --}}
                                         <br>
 
                                     </div>
@@ -257,11 +255,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            Footer
-                        </div>
-                        <!-- /.card-footer-->
+                        <!-- /.card-body -->>
                     </div>
                 </div>
             </div>
