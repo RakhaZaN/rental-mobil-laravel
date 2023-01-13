@@ -44,43 +44,43 @@
                             <tbody>
                                 <tr>
                                     <td>NOPOL</td>
-                                    <td> {{ $mbl->nopol }}</td>
+                                    <td> {{ $detail->nopol }}</td>
                                 </tr>
                                 <tr>
                                     <td>Merk Id</td>
-                                    <td> {{ $mbl->merk_id }}</td>
+                                    <td> {{ $detail->merk_id }}</td>
                                 <tr>
                                     <td>Merk</td>
-                                    <td> {{ $mbl->merk }}</td>
+                                    <td> {{ $detail->merk }}</td>
                                 </tr>
                                 <tr>
                                     <td>Produk</td>
-                                    <td> {{ $mbl->produk }}</td>
+                                    <td> {{ $detail->produk }}</td>
                                 </tr>
                                 <tr>
                                     <td>Warna</td>
-                                    <td> {{ $mbl->warna }}</td>
+                                    <td> {{ $detail->warna }}</td>
                                 </tr>
                                 <tr>
                                     <td>Biaya Sewa</td>
-                                    <td> {{ $mbl->biaya_sewa }}</td>
+                                    <td> {{ $detail->biaya_sewa }}</td>
                                 </tr>
                                 <tr>
                                     <td>CC</td>
-                                    <td> {{ $mbl->cc }}</td>
+                                    <td> {{ $detail->cc }}</td>
                                 </tr>
                                 <tr>
                                     <td>Tahun</td>
-                                    <td> {{ $mbl->tahun }}</td>
+                                    <td> {{ $detail->tahun }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="{{ url("sewa/book?id=") }} {{ $mbl->nopol }} "><input type="submit" class="btn btn-primary" value="BOOKING NOW!"></a>
+                        <a href="{{ url("sewa/book?id=") }} {{ $detail->nopol }} "><input type="submit" class="btn btn-primary" value="BOOKING NOW!"></a>
                     </div>
                     <div class="col-sm-4">
                             <b>Foto</b>
                             <br>
-                            {{
+                            {{-- {{
                             $filefoto = base_url('uploads/foto/' . $mbl->foto);
 
                         // echo $filefoto;
@@ -96,9 +96,9 @@
                         // } else {
                         //     echo '<img src="' . base_url('uploads/foto/default.png') . '" class="img-thumbnail" width="250" alt="Foto">';
                         // }
-                        }}
+                        }} --}}
                         <br>
-                        {{ if ($this->session->userdata('role') == 'administrator') }}
+                        {{-- {{ if ($this->session->userdata('role') == 'administrator') }}
                             <b>Nama File:  {{ $mbl->foto }} </b>
                             <br>
                             {{
@@ -110,7 +110,7 @@
                             <input type="file" name="fotombl">
                             <input type="submit" class="btn btn-primary" value="Upload">
                             {{ echo form_close() }}
-                        {{ }}
+                        {{ }} --}}
                     </div>
 
                 </div>
@@ -127,3 +127,4 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+@endsection

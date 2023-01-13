@@ -32,13 +32,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <?php if ($this->session->userdata('role') == 'administrator') { ?>
+                    {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
 
                     <a class="btn btn-success" href="{{ url("/mobil/add' ?>") }}" role="button"
                         style="margin-bottom: 2%">Tambah Mobil</a>
                     <a class="btn btn-warning" href="{{ url("/perawatan/index") }}" role="button"
                         style="margin-bottom: 2%">Daftar Perawatan</a>
-                    <?php } ?>
+                    {{-- <?php } ?> --}}
                     <table class="table table-striped table-bordered ">
                         <thead>
                             <tr>
@@ -57,52 +57,47 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                        $nomor = 1;
-                        foreach ($list_mobil as $obj) {
-                        ?>
+                            @foreach ($list_mobil as $key => $list)
                             <tr>
-                                <td><?= $nomor ?></td>
-                                <td><?= $obj->nopol ?></td>
-                                <!-- <td><?= $obj->merk_id ?></td> -->
-                                <td><?= $obj->merk ?></td>
-                                <td><?= $obj->produk ?></td>
-                                <td><?= $obj->warna ?></td>
-                                <td><?= $obj->biaya_sewa ?></td>
-                                <td><?= $obj->cc ?></td>
-                                <!-- <td><?= $obj->mobil_id ?></td> -->
-                                <td><?= $obj->tahun ?></td>
-                                <td style="width:20%"><?= $obj->deskripsi ?> </td>
+                                <td>{{  $key + 1 }}</td>
+                                <td>{{ $list->nopol }}</td>
+                                <!-- <td>{{ $list->merk_id }}</td> -->
+                                <td>{{ $list->merk }}</td>
+                                <td>{{ $list->produk }}</td>
+                                <td>{{ $list->warna }}</td>
+                                <td>{{ $list->biaya_sewa }}</td>
+                                <td>{{ $list->cc }}</td>
+                                <!-- <td>{{ $list->mobil_id }}</td> -->
+                                <td>{{ $list->tahun }}</td>
+                                <td style="width:20%">{{ $list->deskripsi }} </td>
                                 <td>
                                     <div style="margin-bottom: 2%">
                                         <a class="btn btn-info"
-                                            href="{{ url("/mobil/view?id= { $obj->nopol }") }}"
+                                            href="/mobil/detail/{{  $list->nopol }}"
                                             style="margin-bottom: 2%">Detail</a>
                                         <a
-                                            href="{{ url("/sewa/book?id= { $obj->nopol }") }}" ><input
+                                            href="{{ url("/sewa/book?id= { $list->nopol }") }}" ><input
                                                 type="submit" class="btn btn-primary" value="BOOKING NOW!" role="button"
                                                 style="margin-bottom: 2%"></a>
                                     </div>
-                                    <?php if ($this->session->userdata('role') == 'administrator') { ?>
+                                    {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
                                     <a class="btn btn-success"
                                         href="{{ url("/mobil/edit?id=
-                                        { $obj->nopol }
+                                        { $list->nopol }
                                         ") }}"
                                         style="margin-bottom: 2%">Edit</a>
                                     <a class="btn btn-danger"
                                         href="{{ url("/mobil/delete?id=
-                                        { $obj->nopol }
+                                        { $list->nopol }
                                         ") }}"
-                                        onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $obj->nopol }} ?')) {return false}">Delete</a>
+                                        onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $list->nopol }} ?')) {return false}">Delete</a>
                                     <!-- UNTUK LOGIC ROLE -->
-                                    <?php
+                                    {{-- <?php
                                     }
-                                    ?>
+                                    ?> --}}
                                 </td>
                             </tr>
-                            <?php
-                            $nomor++;
-                        } ?>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

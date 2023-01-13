@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MobilController;
 use App\Http\Controllers\SewaController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/sewa', SewaController::class);
+Route::get('/mobil', [MobilController::class, 'index']);
+Route::get('/mobil/detail/{detail:nopol}',[MobilController::class, 'show']);
