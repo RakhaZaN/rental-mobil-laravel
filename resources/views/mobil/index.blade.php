@@ -82,16 +82,15 @@
                                     </div>
                                     {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
                                     <a class="btn btn-success"
-                                        href="{{ url("/mobil/edit?id=
-                                        { $list->nopol }
-                                        ") }}"
+                                        href="/mobil/edit/{{ $list->nopol }}"
                                         style="margin-bottom: 2%">Edit</a>
-                                    <a class="btn btn-danger"
-                                        href="{{ url("/mobil/delete?id=
-                                        { $list->nopol }
-                                        ") }}"
-                                        onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $list->nopol }} ?')) {return false}">Delete</a>
+
                                     <!-- UNTUK LOGIC ROLE -->
+                                    <form action="/mobil/{{ $list->nopol }}" method="Post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger" onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $list->nopol }} ?))">Delete</button>
+                                    </form>
                                     {{-- <?php
                                     }
                                     ?> --}}

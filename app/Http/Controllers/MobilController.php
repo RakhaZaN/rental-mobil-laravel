@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Merk;
 use App\Models\MerkMobil;
 use App\Models\Mobil;
 use Illuminate\Http\Request;
@@ -20,5 +20,23 @@ class MobilController extends Controller
     {
         return view('mobil.view',compact('detail'));
 
+    }
+
+    public function edit(MerkMobil $edit)
+    {
+        $merk = Merk::all();
+        return view('mobil.update', compact('edit','merk'));
+    }
+
+    public function update(Request $request, Mobil $edit)
+    {
+        $edit->update($request->all());
+        return redirect('/mobil');
+    }
+
+    public function delete(Mobil $delete)
+    {
+        $delete->delete();
+        return redirect('/mobil');
     }
 }
