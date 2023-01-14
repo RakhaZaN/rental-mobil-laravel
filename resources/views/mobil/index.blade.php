@@ -1,6 +1,9 @@
 @extends('layout.main')
 
 @section('container')
+    @php
+        $isAdmin = auth()->user()->role == 'administrator';
+    @endphp
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -32,12 +35,9 @@
                     </div>
                 </div> --}}
                 <div class="card-body">
-                    {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
-
-                    <a class="btn btn-success" href="{{ route('mobil.create') }}">Tambah Mobil</a>
-                    {{-- <a class="btn btn-warning" href="{{ url('/perawatan/index') }}" role="button"
-                        style="margin-bottom: 2%">Daftar Perawatan</a> --}}
-                    {{-- <?php } ?> --}}
+                    @if ($isAdmin)
+                        <a class="btn btn-success" href="{{ route('mobil.create') }}">Tambah Mobil</a>
+                    @endif
                     <table class="table table-striped table-bordered mt-3">
                         <thead>
                             <tr>
@@ -74,22 +74,22 @@
                                             <a class="btn btn-info"
                                                 href="{{ route('mobil.show', ['detail' => $list->nopol]) }}"
                                                 style="margin-bottom: 2%">Detail</a>
-                                            <a href="{{ route('sewa.form', ['nopol' => $list->nopol]) }}"><input
-                                                    type="submit" class="btn btn-primary" value="BOOKING NOW!"
-                                                    role="button" style="margin-bottom: 2%"></a>
+                                            <a href="{{ route('sewa.form', ['nopol' => $list->nopol]) }}"
+                                                class="btn btn-primary">BOOKING NOW!</a>
                                         </div>
-                                        {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
-                                        <a class="btn btn-success"
-                                            href="{{ route('mobil.edit', ['edit' => $list->nopol]) }}"
-                                            style="margin-bottom: 2%">Edit</a>
+                                        @if ($isAdmin)
+                                            <a class="btn btn-success"
+                                                href="{{ route('mobil.edit', ['edit' => $list->nopol]) }}"
+                                                style="margin-bottom: 2%">Edit</a>
 
-                                        <!-- UNTUK LOGIC ROLE -->
-                                        <form action="{{ route('mobil.delete', ['delete' => $list->nopol]) }}"
-                                            method="POST">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                            <!-- UNTUK LOGIC ROLE -->
+                                            <form action="{{ route('mobil.delete', ['delete' => $list->nopol]) }}"
+                                                method="POST">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

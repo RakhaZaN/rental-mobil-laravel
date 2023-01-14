@@ -1,3 +1,6 @@
+@php
+    $isAdmin = auth()->user()->role == 'administrator';
+@endphp
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -10,15 +13,14 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href=" {{ url('/mobil') }}" class="nav-link">Daftar Mobil</a>
         </li>
-        {{-- <?php if ($this->session->userdata("role") == 'administrator') { ?> --}}
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href=" {{ url('/users') }}" class="nav-link">Daftar Users</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href=" {{ url('/sewa') }}" class="nav-link">Daftar Penyewaan</a>
-        </li>
-        {{-- <?php } ?> --}}
-        </li>
+        @if ($isAdmin)
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href=" {{ url('/users') }}" class="nav-link">Daftar Users</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href=" {{ url('/sewa') }}" class="nav-link">Daftar Penyewaan</a>
+            </li>
+        @endif
     </ul>
 
     <!-- Right navbar links -->

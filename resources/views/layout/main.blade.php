@@ -59,15 +59,11 @@
     <!-- AdminLTE for demo purposes -->
     <!-- <script src="{{ asset('dist/js/demo.js') }}"></script> -->
 
-    <script src="{{ asset(' dist/Registrasi/js/jquery-3.3.1.min.js') }}
-                                                                                        "></script>
+    <script src="{{ asset(' dist/Registrasi/js/jquery-3.3.1.min.js') }}"></script>
     <!-- DATE-PICKER -->
-    <script src="{{ asset(' dist/Registrasi/vendor/date-picker/js/datepicker.js') }}
-                                                                                        "></script>
-    <script src="{{ asset(' dist/Registrasi/vendor/date-picker/js/datepicker.en.js') }}
-                                                                                        "></script>
-    <script src="{{ asset(' dist/Registrasi/js/main.js') }}
-                                                                                        "></script>
+    <script src="{{ asset(' dist/Registrasi/vendor/date-picker/js/datepicker.js') }}"></script>
+    <script src="{{ asset(' dist/Registrasi/vendor/date-picker/js/datepicker.en.js') }}"></script>
+    <script src="{{ asset(' dist/Registrasi/js/main.js') }}"></script>
 
 </body>
 

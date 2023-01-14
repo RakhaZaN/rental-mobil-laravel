@@ -1,3 +1,6 @@
+@php
+    $isAdmin = auth()->user()->role == 'administrator';
+@endphp
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
@@ -14,12 +17,7 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">
-                    {{-- <?php if ($this->session->has_userdata('username')) {
-                        echo $this->session->userdata('username');
-                        echo ' @ ' . $this->session->userdata('role');
-                    } ?> --}}
-                </a>
+                <a href="#" class="d-block"><b>{{ auth()->user()->username }}</b> @ {{ auth()->user()->role }}</a>
             </div>
         </div>
 
@@ -50,8 +48,8 @@
                         </p>
                     </a>
                 </li>
-                {{-- <?php if ($this->session->userdata("role") == 'administrator') { ?> --}}
-                {{-- <li class="nav-item">
+                @if ($isAdmin)
+                    {{-- <li class="nav-item">
                     <a href=" {{ url('/perawatan') }}" class="nav-link">
                         <i class=" fa fa-wrench"></i>
                         <p>
@@ -59,26 +57,26 @@
                         </p>
                     </a>
                 </li> --}}
-                <li class="nav-item">
-                    <a href=" {{ url('/sewa') }}" class="nav-link">
-                        <i class="fa fa-check "></i>
-                        <p>
-                            Daftar Penyewaan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
-                        <i class="fa fa-users"></i>
-                        <p>
-                            Daftar users
-                        </p>
-                    </a>
-                </li>
-                {{-- <?php } ?> --}}
+                    <li class="nav-item">
+                        <a href=" {{ url('/sewa') }}" class="nav-link">
+                            <i class="fa fa-check "></i>
+                            <p>
+                                Daftar Penyewaan
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link">
+                            <i class="fa fa-users"></i>
+                            <p>
+                                Daftar users
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <br>
-                <li class="nav-item">
-                    <a class="btn btn-danger" href=" {{ url('/users/logout') }}" role="button">LOGOUT</a>
+                <li class="nav-item bg-danger rounded text-center">
+                    <a class="nav-link" href=" {{ route('logout') }}">LOGOUT</a>
                 </li>
             </ul>
         </nav>
