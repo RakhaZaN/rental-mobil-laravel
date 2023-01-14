@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href=" {{ url('/users') }}" class="nav-link">
+                    <a href="{{ route('user.index') }}" class="nav-link">
                         <i class="fa fa-users"></i>
                         <p>
                             Daftar users
