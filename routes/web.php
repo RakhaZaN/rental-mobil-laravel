@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\SewaController;
 use App\Http\Controllers\UserController;
@@ -16,15 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [DashboardController::class, 'landing']);
 
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [UserController::class, 'authenticate'])->name('login.authenticate');
+Route::get('/register', [UserController::class, 'register'])->name('register')->middleware('guest');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+// Route::middleware('auth', function () {
+Route::get('/users', [UserController::class, 'index'])->name('user.index')->middleware('auth');
 
 Route::group([
     'as' => 'mobil.',
-    'prefix' => 'mobil'
+    'prefix' => 'mobil',
+    'middleware' => 'auth'
 ], function () {
     Route::get('/', [MobilController::class, 'index'])->name('index');
     Route::get('/create', [MobilController::class, 'create'])->name('create');
@@ -37,9 +44,11 @@ Route::group([
 
 Route::group([
     "as" => "sewa.",
-    "prefix" => "sewa"
+    "prefix" => "sewa",
+    'middleware' => 'auth'
 ], function () {
     Route::get('/', [SewaController::class, 'index'])->name('index');
     Route::get('/form', [SewaController::class, 'create'])->name('form');
     Route::post('/book', [SewaController::class, 'store'])->name('book');
 });
+// });
