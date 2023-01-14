@@ -51,14 +51,14 @@
                     </a>
                 </li>
                 {{-- <?php if ($this->session->userdata("role") == 'administrator') { ?> --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href=" {{ url('/perawatan') }}" class="nav-link">
                         <i class=" fa fa-wrench"></i>
                         <p>
                             Daftar Perawatan
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href=" {{ url('/sewa') }}" class="nav-link">
                         <i class="fa fa-check "></i>

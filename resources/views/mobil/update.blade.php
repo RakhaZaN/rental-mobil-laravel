@@ -43,11 +43,12 @@
                                 <div class="row">
                                     <div class=" col-sm-8">
                                         <div class="booking-form">
-                                            <?php
-                                            $hidden = ['edit' => $mbledit->nopol];
-                                            ?>
-                                            <form action="/mobil/save" method="POST">
-                                                @method('POST')
+                                            {{-- <?php
+                                            $hidden = ['edit' => $edit->nopol];
+                                            ?> --}}
+                                            <form action="/mobil/update/{{ $edit->nopol }}" method="POST">
+                                                @method('PUT')
+                                                @csrf
                                                 <div class="form-group row">
                                                     <label for="merk_id" class="col-4 col-form-label">MERK ID</label>
                                                     <div class="col-8">
@@ -58,7 +59,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="merk_id" name="merk_id"
-                                                                value="<?= $mbledit->merk_id ?>" placeholder="merk id"
+                                                            value="{{ $edit->merk_id }}" placeholder="merk id"
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -73,7 +74,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="nopol_id" name="nopol"
-                                                                value="<?= $mbledit->nopol ?>" placeholder="nopol"
+                                                                value="{{ $edit->nopol }}" placeholder="nopol"
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -88,7 +89,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="Warna_id" name="warna"
-                                                                value="<?= $mbledit->warna ?>" placeholder="warna"
+                                                                value="{{ $edit->warna }}" placeholder="warna"
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -96,7 +97,7 @@
                                                 <div class="form-group row">
                                                     <label for="deskirpsi" class="col-4 col-form-label">Deskripsi</label>
                                                     <div class="col-8">
-                                                        <textarea id="deskripsi" name="deskripsi" value="" cols="40" rows="5" class="form-control"><?= $mbledit->deskripsi ?></textarea>
+                                                        <textarea id="deskripsi" name="deskripsi" value="" cols="40" rows="5" class="form-control"><?= $edit->deskripsi ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -109,7 +110,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="biayasewa" name="biaya_sewa"
-                                                                value="<?= $mbledit->biaya_sewa ?>" placeholder="biaya sewa"
+                                                                value="{{ $edit->biaya_sewa }}" placeholder="biaya sewa"
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -124,7 +125,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="tahun_id" name="tahun"
-                                                                value="<?= $mbledit->tahun ?>" placeholder="tahun "
+                                                                value="{{ $edit->tahun }}" placeholder="tahun "
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -139,7 +140,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="cc_id" name="cc"
-                                                                value="<?= $mbledit->cc ?>" placeholder="cc"
+                                                                value="{{ $edit->cc }}" placeholder="cc"
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -154,7 +155,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="fotoid" name="foto"
-                                                                value="<?= $mbledit->foto ?>"
+                                                                value="{{ $edit->foto }}"
                                                                 placeholder="&quot;nopol.jpg&quot;" type="text"
                                                                 class="form-control">
                                                         </div>

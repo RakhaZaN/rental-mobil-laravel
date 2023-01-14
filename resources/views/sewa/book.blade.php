@@ -41,10 +41,24 @@
                         <div class="section-center">
                             <div class="container">
                                 <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="card overflow-hidden">
+                                            <img src="{{ asset('storage/' . $mobil->foto) }}" alt="mobil"
+                                                class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="">{{ $mobil->nopol }} <small>- {{ $mobil->warna }}</small>
+                                                </h5>
+                                                <h4 class="text-info">Rp{{ $mobil->biaya_sewa }}</h4>
+                                                <p>{{ $mobil->deskripsi }}</p>
+                                                <p>{{ $mobil->cc }}CC | Tahun {{ $mobil->tahun }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class=" col-sm-8">
                                         <div class="booking-form">
-                                            {{-- {{ $hidden = ['edit' => $mbledit->nopol] }} --}}
-                                            <form action="{{ route('sewa.book') }}" method="POST">
+                                            <form
+                                                action="{{ route('sewa.book', ['mobil_id' => $mobil->id, 'users_id' => 7]) }}"
+                                                method="POST">
                                                 @method('POST')
                                                 @csrf
                                                 <div class="form-group row">
@@ -56,13 +70,13 @@
                                                                     <i class="fa fa-address-card"></i>
                                                                 </div>
                                                             </div>
-                                                            <input id="nik" name="nik" placeholder="NIK KTP"
-                                                                type="text" class="form-control" spellcheck="false"
+                                                            <input id="nik" name="noktp" type="text"
+                                                                class="form-control" spellcheck="false"
                                                                 data-ms-editor="true">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label for="nama" class="col-4 col-form-label">Nama</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
@@ -76,7 +90,7 @@
                                                                 data-ms-editor="true">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 {{-- <div class="form-group row">
                                                     <label for="nama" class="col-4 col-form-label">Users ID</label>
                                                     <div class="col-8">
@@ -94,7 +108,7 @@
                                                         </div>
                                                     </div>
                                                 </div> --}}
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label for="nopol" class="col-4 col-form-label">Nopol</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
@@ -104,20 +118,21 @@
                                                                 </div>
                                                             </div>
                                                             <input id="nopol" name="nopol" placeholder="BXXXXABC"
-                                                                type="text" class="form-control" value=""
-                                                                spellcheck="false" data-ms-editor="true">
+                                                                type="text" class="form-control"
+                                                                value="{{ $mobil->nopol }}" spellcheck="false"
+                                                                data-ms-editor="true" readonly>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
+                                                </div> --}}
+                                                {{-- <div class="form-group row">
                                                     <label for="merkid" class="col-4 col-form-label">Merk ID</label>
                                                     <div class="col-8">
                                                         <input id="merkid" name="merkid" placeholder="merk id"
                                                             type="text" class="form-control" value=""
                                                             spellcheck="false" data-ms-editor="true">
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
+                                                </div> --}}
+                                                {{-- <div class="form-group row">
                                                     <label for="mobil_id" class="col-4 col-form-label">Mobil</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
@@ -130,8 +145,8 @@
                                                                 class="form-control" value="">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
+                                                </div> --}}
+                                                {{-- <div class="form-group row">
                                                     <label for="mobil_id" class="col-4 col-form-label">Mobil ID</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
@@ -144,16 +159,16 @@
                                                                 value="" class="form-control">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
+                                                </div> --}}
+                                                {{-- <div class="form-group row">
                                                     <label for="warna" class="col-4 col-form-label">Warna</label>
                                                     <div class="col-8">
                                                         <input id="warna" name="warna" type="text"
                                                             class="form-control" value="" spellcheck="false"
                                                             data-ms-editor="true">
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
+                                                </div> --}}
+                                                {{-- <div class="form-group row">
                                                     <label for="biaya" class="col-4 col-form-label">Biaya</label>
                                                     <div class="col-8">
                                                         <div class="input-group">
@@ -167,7 +182,7 @@
                                                                 data-ms-editor="true">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
                                                     <label for="tglmulai" class="col-4 col-form-label">Tanggal
                                                         Mulai</label>
@@ -178,7 +193,7 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </div>
                                                             </div>
-                                                            <input id="tglmulai" name="tglmulai" type="text"
+                                                            <input id="tglmulai" name="tanggal_mulai" type="date"
                                                                 class="form-control datepicker-here" data-language='en'
                                                                 data-date-format="yyyy-mm-dd" spellcheck="false"
                                                                 data-ms-editor="true" spellcheck="false"
@@ -196,7 +211,7 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </div>
                                                             </div>
-                                                            <input id="tglselesai" name="tglselesai" type="text"
+                                                            <input id="tglselesai" name="tanggal_akhir" type="date"
                                                                 class="form-control datepicker-here" data-language='en'
                                                                 data-date-format="yyyy-mm-dd" spellcheck="false"
                                                                 data-ms-editor="true">
@@ -227,31 +242,6 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <b>Foto</b>
-                                        <br>
-                                        {{-- <?php
-                                        $filefoto = base_url('uploads/foto/' . $mbledit->foto);
-
-                                        // echo $filefoto;
-                                        $array = get_headers($filefoto);
-                                        $string = $array[0];
-                                        if (strpos($string, '200')) {
-                                            echo '<img src="' . $filefoto . '" class="img-thumbnail" width="500" alt="Foto">';
-                                        } else {
-                                            echo '<img src="' . base_url('uploads/foto/default.jpg') . '" class="img-thumbnail" width="250" alt="Foto">';
-                                        }
-                                        // if (file_exists($filefoto)) {
-                                        //     echo '<img src="' . base_url($filefoto) . '" class="img-thumbnail" width="250" alt="Foto">';
-                                        // } else {
-                                        //     echo '<img src="' . base_url('uploads/foto/default.png') . '" class="img-thumbnail" width="250" alt="Foto">';
-                                        // }
-                                        ?> --}}
-                                        <br>
-
-                                    </div>
-
-
                                 </div>
                             </div>
                         </div>

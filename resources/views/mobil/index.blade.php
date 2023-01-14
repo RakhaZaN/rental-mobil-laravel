@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Rental Mobil</h1>
+                        <h1>Data Mobil Rental</h1>
                     </div>
 
                 </div>
@@ -19,7 +19,7 @@
 
             <!-- Default box -->
             <div class="card">
-                <div class="card-header">
+                {{-- <div class="card-header">
                     <h3 class="card-title">Data Mobil Rental</h3>
 
                     <div class="card-tools">
@@ -30,16 +30,15 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card-body">
-                    <?php if ($this->session->userdata('role') == 'administrator') { ?>
+                    {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
 
-                    <a class="btn btn-success" href="{{ url("/mobil/add' ?>") }}" role="button"
-                        style="margin-bottom: 2%">Tambah Mobil</a>
-                    <a class="btn btn-warning" href="{{ url("/perawatan/index") }}" role="button"
-                        style="margin-bottom: 2%">Daftar Perawatan</a>
-                    <?php } ?>
-                    <table class="table table-striped table-bordered ">
+                    <a class="btn btn-success" href="{{ url('/mobil/add') }}">Tambah Mobil</a>
+                    {{-- <a class="btn btn-warning" href="{{ url('/perawatan/index') }}" role="button"
+                        style="margin-bottom: 2%">Daftar Perawatan</a> --}}
+                    {{-- <?php } ?> --}}
+                    <table class="table table-striped table-bordered mt-3">
                         <thead>
                             <tr>
                                 <th>NO</th>
@@ -57,60 +56,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                        $nomor = 1;
-                        foreach ($list_mobil as $obj) {
-                        ?>
-                            <tr>
-                                <td><?= $nomor ?></td>
-                                <td><?= $obj->nopol ?></td>
-                                <!-- <td><?= $obj->merk_id ?></td> -->
-                                <td><?= $obj->merk ?></td>
-                                <td><?= $obj->produk ?></td>
-                                <td><?= $obj->warna ?></td>
-                                <td><?= $obj->biaya_sewa ?></td>
-                                <td><?= $obj->cc ?></td>
-                                <!-- <td><?= $obj->mobil_id ?></td> -->
-                                <td><?= $obj->tahun ?></td>
-                                <td style="width:20%"><?= $obj->deskripsi ?> </td>
-                                <td>
-                                    <div style="margin-bottom: 2%">
-                                        <a class="btn btn-info"
-                                            href="{{ url("/mobil/view?id= { $obj->nopol }") }}"
-                                            style="margin-bottom: 2%">Detail</a>
-                                        <a
-                                            href="{{ url("/sewa/book?id= { $obj->nopol }") }}" ><input
-                                                type="submit" class="btn btn-primary" value="BOOKING NOW!" role="button"
-                                                style="margin-bottom: 2%"></a>
-                                    </div>
-                                    <?php if ($this->session->userdata('role') == 'administrator') { ?>
-                                    <a class="btn btn-success"
-                                        href="{{ url("/mobil/edit?id=
-                                        { $obj->nopol }
-                                        ") }}"
-                                        style="margin-bottom: 2%">Edit</a>
-                                    <a class="btn btn-danger"
-                                        href="{{ url("/mobil/delete?id=
-                                        { $obj->nopol }
-                                        ") }}"
-                                        onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $obj->nopol }} ?')) {return false}">Delete</a>
-                                    <!-- UNTUK LOGIC ROLE -->
-                                    <?php
+                            @foreach ($list_mobil as $key => $list)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $list->nopol }}</td>
+                                    <!-- <td>{{ $list->merk_id }}</td> -->
+                                    <td>{{ $list->merk }}</td>
+                                    <td>{{ $list->produk }}</td>
+                                    <td>{{ $list->warna }}</td>
+                                    <td>{{ $list->biaya_sewa }}</td>
+                                    <td>{{ $list->cc }}</td>
+                                    <!-- <td>{{ $list->mobil_id }}</td> -->
+                                    <td>{{ $list->tahun }}</td>
+                                    <td style="width:20%">{{ $list->deskripsi }} </td>
+                                    <td>
+                                        <div style="margin-bottom: 2%">
+                                            <a class="btn btn-info" href="/mobil/detail/{{ $list->nopol }}"
+                                                style="margin-bottom: 2%">Detail</a>
+                                            <a href="{{ route('sewa.form', ['nopol' => $list->nopol]) }}"><input
+                                                    type="submit" class="btn btn-primary" value="BOOKING NOW!"
+                                                    role="button" style="margin-bottom: 2%"></a>
+                                        </div>
+                                        {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
+                                        <a class="btn btn-success" href="/mobil/edit/{{ $list->nopol }}"
+                                            style="margin-bottom: 2%">Edit</a>
+
+                                        <!-- UNTUK LOGIC ROLE -->
+                                        <form action="/mobil/{{ $list->nopol }}" method="Post">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $list->nopol }} ?))">Delete</button>
+                                        </form>
+                                        {{-- <?php
                                     }
-                                    ?>
-                                </td>
-                            </tr>
-                            <?php
-                            $nomor++;
-                        } ?>
+                                    ?> --}}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
-                <!-- /.card-footer-->
             </div>
             <!-- /.card -->
 

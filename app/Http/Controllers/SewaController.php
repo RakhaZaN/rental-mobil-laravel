@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DaftarSewa;
+use App\Models\Mobil;
 use App\Models\Sewa;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,11 @@ class SewaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $mobil = [];
+        $mobil = Mobil::where('nopol', $request->nopol)->first();
+        // return $mobil;
+
         return view('sewa.book', compact('mobil'));
     }
 
@@ -52,10 +55,10 @@ class SewaController extends Controller
         $create = Sewa::create($validate);
 
         if ($create) {
-            return $create;
+            return redirect(route('sewa.index'));
         }
 
-        return false;
+        return redirect(back());
     }
 
     /**

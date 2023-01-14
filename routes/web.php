@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MobilController;
 use App\Http\Controllers\SewaController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/mobil', [MobilController::class, 'index']);
+Route::get('/mobil/detail/{detail:nopol}', [MobilController::class, 'show']);
+Route::get('/mobil/edit/{edit:nopol}', [MobilController::class, 'edit']);
+Route::put('/mobil/update/{edit:nopol}', [MobilController::class, 'update']);
+Route::delete('/mobil/{delete:nopol}', [MobilController::class, 'delete']);
 
 Route::group([
     "as" => "sewa.",
