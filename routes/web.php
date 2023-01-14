@@ -19,11 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mobil', [MobilController::class, 'index']);
-Route::get('/mobil/detail/{detail:nopol}', [MobilController::class, 'show']);
-Route::get('/mobil/edit/{edit:nopol}', [MobilController::class, 'edit']);
-Route::put('/mobil/update/{edit:nopol}', [MobilController::class, 'update']);
-Route::delete('/mobil/{delete:nopol}', [MobilController::class, 'delete']);
+Route::group([
+    'as' => 'mobil.',
+    'prefix' => 'mobil'
+], function () {
+    Route::get('/', [MobilController::class, 'index'])->name('index');
+    Route::get('/create', [MobilController::class, 'create'])->name('create');
+    Route::post('/store', [MobilController::class, 'store'])->name('store');
+    Route::get('/{detail:nopol}', [MobilController::class, 'show'])->name('show');
+    Route::get('/edit/{edit:nopol}', [MobilController::class, 'edit'])->name('edit');
+    Route::put('/edit/{edit:nopol}', [MobilController::class, 'update'])->name('update');
+    Route::delete('/{delete:nopol}', [MobilController::class, 'delete'])->name('delete');
+});
 
 Route::group([
     "as" => "sewa.",
