@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Rental Mobil</h1>
+                        <h1>Update Data Mobil Rental</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -24,7 +24,7 @@
 
             <!-- Default box -->
             <div class="card">
-                <div class="card-header">
+                {{-- <div class="card-header">
                     <h3 class="card-title">Update Data Mobil Rental</h3>
 
                     <div class="card-tools">
@@ -35,7 +35,7 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card-body">
                     <div id="booking" class="section">
                         <div class="section-center">
@@ -43,10 +43,8 @@
                                 <div class="row">
                                     <div class=" col-sm-8">
                                         <div class="booking-form">
-                                            {{-- <?php
-                                            $hidden = ['edit' => $edit->nopol];
-                                            ?> --}}
-                                            <form action="/mobil/update/{{ $edit->nopol }}" method="POST">
+                                            <form action="{{ route('mobil.update', ['edit' => $edit->nopol]) }}"
+                                                enctype="multipart/form-data" method="POST">
                                                 @method('PUT')
                                                 @csrf
                                                 <div class="form-group row">
@@ -59,7 +57,7 @@
                                                                 </div>
                                                             </div>
                                                             <input id="merk_id" name="merk_id"
-                                                            value="{{ $edit->merk_id }}" placeholder="merk id"
+                                                                value="{{ $edit->merk_id }}" placeholder="merk id"
                                                                 type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -73,9 +71,8 @@
                                                                     <i class="fa "></i>
                                                                 </div>
                                                             </div>
-                                                            <input id="nopol_id" name="nopol"
-                                                                value="{{ $edit->nopol }}" placeholder="nopol"
-                                                                type="text" class="form-control">
+                                                            <input id="nopol_id" name="nopol" value="{{ $edit->nopol }}"
+                                                                placeholder="nopol" type="text" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -88,9 +85,8 @@
                                                                     <i class="fa fa-pie-chart"></i>
                                                                 </div>
                                                             </div>
-                                                            <input id="Warna_id" name="warna"
-                                                                value="{{ $edit->warna }}" placeholder="warna"
-                                                                type="text" class="form-control">
+                                                            <input id="Warna_id" name="warna" value="{{ $edit->warna }}"
+                                                                placeholder="warna" type="text" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,9 +120,8 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </div>
                                                             </div>
-                                                            <input id="tahun_id" name="tahun"
-                                                                value="{{ $edit->tahun }}" placeholder="tahun "
-                                                                type="text" class="form-control">
+                                                            <input id="tahun_id" name="tahun" value="{{ $edit->tahun }}"
+                                                                placeholder="tahun " type="text" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,17 +143,9 @@
                                                 <div class="form-group row">
                                                     <label for="fotoid" class="col-4 col-form-label">Foto</label>
                                                     <div class="col-8">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fa fa-photo"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input id="fotoid" name="foto"
-                                                                value="{{ $edit->foto }}"
-                                                                placeholder="&quot;nopol.jpg&quot;" type="text"
-                                                                class="form-control">
-                                                        </div>
+                                                        <input id="fotoid" name="foto" value="{{ $edit->foto }}"
+                                                            placeholder="&quot;nopol.jpg&quot;" type="file"
+                                                            class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -179,17 +166,13 @@
                                             </thead>
 
                                             <tbody>
-                                                <?php
-                                            foreach ($merk as $mrk) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $mrk->id ?></td>
-                                                    <td><?= $mrk->nama ?></td>
-                                                    <td><?= $mrk->produk ?></td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
+                                                @foreach ($merk as $mrk)
+                                                    <tr>
+                                                        <td><?= $mrk->id ?></td>
+                                                        <td><?= $mrk->nama ?></td>
+                                                        <td><?= $mrk->produk ?></td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -199,10 +182,6 @@
                     </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
-                <!-- /.card-footer-->
             </div>
             <!-- /.card -->
 

@@ -34,7 +34,7 @@
                 <div class="card-body">
                     {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
 
-                    <a class="btn btn-success" href="{{ url('/mobil/add') }}">Tambah Mobil</a>
+                    <a class="btn btn-success" href="{{ route('mobil.create') }}">Tambah Mobil</a>
                     {{-- <a class="btn btn-warning" href="{{ url('/perawatan/index') }}" role="button"
                         style="margin-bottom: 2%">Daftar Perawatan</a> --}}
                     {{-- <?php } ?> --}}
@@ -71,26 +71,25 @@
                                     <td style="width:20%">{{ $list->deskripsi }} </td>
                                     <td>
                                         <div style="margin-bottom: 2%">
-                                            <a class="btn btn-info" href="/mobil/detail/{{ $list->nopol }}"
+                                            <a class="btn btn-info"
+                                                href="{{ route('mobil.show', ['detail' => $list->nopol]) }}"
                                                 style="margin-bottom: 2%">Detail</a>
                                             <a href="{{ route('sewa.form', ['nopol' => $list->nopol]) }}"><input
                                                     type="submit" class="btn btn-primary" value="BOOKING NOW!"
                                                     role="button" style="margin-bottom: 2%"></a>
                                         </div>
                                         {{-- <?php if ($this->session->userdata('role') == 'administrator') { ?> --}}
-                                        <a class="btn btn-success" href="/mobil/edit/{{ $list->nopol }}"
+                                        <a class="btn btn-success"
+                                            href="{{ route('mobil.edit', ['edit' => $list->nopol]) }}"
                                             style="margin-bottom: 2%">Edit</a>
 
                                         <!-- UNTUK LOGIC ROLE -->
-                                        <form action="/mobil/{{ $list->nopol }}" method="Post">
-                                            @method('DELETE')
+                                        <form action="{{ route('mobil.delete', ['delete' => $list->nopol]) }}"
+                                            method="POST">
+                                            @method('delete')
                                             @csrf
-                                            <button type="submit" class="btn btn-danger"
-                                                onclick="if(!confirm('Anda Yakin Hapus Mobil dengan NOPOL {{ $list->nopol }} ?))">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
-                                        {{-- <?php
-                                    }
-                                    ?> --}}
                                     </td>
                                 </tr>
                             @endforeach
